@@ -89,5 +89,6 @@ describe('Park', function() {
   park.addDinosaur(Tyrannosaurus)
   park.addDinosaur(Veloceraptor)
   park.addDinosaur(Brachiosaurus)
-  
+  const actual = park.totalRevenue
+  assert.strictEqual(actual, 6205000)
 });
