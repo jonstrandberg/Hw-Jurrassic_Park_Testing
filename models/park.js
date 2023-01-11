@@ -13,17 +13,20 @@ Park.prototype.addDinosaur = function (dinosaur) {
 }
 
 Park.prototype.removeDinosaur = function (dinosaur){
-    const indexOfDinosaur = this.dinosaurs.indexOf(dinosaur);
-    this.dinosaurs.splice(indexOfDinosaur, 2);
+    const index = this.dinosaurs.indexOf(dinosaur);
+    this.dinosaurs.splice(index, 1);
 }
 
-// Park.prototype.mostAttractiveDinosaur = function() {
-//     let 
-//     for (dinosaur of this.dinosaurs) {
-//         if dinosaur.guestsAttractedPerDay > 
-//     }
+Park.prototype.mostAttractiveDinosaur = function() {
+    let mostAttractiveDinosaur = this.dinosaurs[0]
+    for (const dinosaur of this.dinosaurs) {
+        if (dinosaur.guestsAttractedPerDay > mostAttractiveDinosaur.guestsAttractedPerDay) {
+            mostAttractiveDinosaur = dinosaur
+        }
+        return mostAttractiveDinosaur
+    }
 
-// }
+}
 
 Park.prototype.particularSpecies = function (species) {
     let sameSpecies= []

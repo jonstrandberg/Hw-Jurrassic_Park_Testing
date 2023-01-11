@@ -4,12 +4,12 @@ const Dinosaur = require('../models/dinosaur.js');
 
 describe('Park', function () {
 
-  let park
   let veloceraptor
   let tyrannosaurus
   let brachiosaurus
+  let park
 
-  beforeEach(function () {
+beforeEach(function () {
 
   park = new Park("Dino Park", 20)
 
@@ -17,7 +17,7 @@ describe('Park', function () {
   tyrannosaurus = new Dinosaur("T-rex", "carnivore", 500)
   brachiosaurus = new Dinosaur("Brachiosaurus", "herbivore", 250)
 
-  })
+})
 
   it('should have a name', function () {
     const actual = park.name
@@ -31,33 +31,32 @@ describe('Park', function () {
   })
 
   it('should have a collection of dinosaurs', function () {
-    const actual = park.numberOfDinosaurs()
-    assert.strictEqual(actual, 0)
+    const actual = park.dinosaurs
+    assert.deepStrictEqual(actual, [])
   })
 
   it('should be able to add a dinosaur to its collection', function () {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
-    const actual = park.numberOfDinosaurs
-    assert.strictEqual(actual, 3)
+    const actual = park.dinosaurs
+    assert.deepStrictEqual(actual, 3)
   })
 
   it('should be able to remove a dinosaur from its collection', function () {
     park.addDinosaur(tyrannosaurus)
-    park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
     park.removeDinosaur(Brachiosaurus)
-    const actual = park.numberOfDinosaurs
-    assert.strictEqual(actual, 2)
+    const actual = park.dinosaurs
+    assert.deepStrictEqual(actual, 1)
   })
 
-  it('should be able to find the dinosaur that attracts the most visitors', function(){
+  it('should be able to find the dinosaur that attracts the most visitors', function() {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
     const actual = park.getMostAttractiveDinosaur()
-    assert.strictEqual(actual, (Tyrannosaurus))
+    assert.strictEqual(actual, tyrannosaurus)
   });
 
   it('should be able to find all dinosaurs of a particular species', function () {
