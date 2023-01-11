@@ -40,15 +40,15 @@ beforeEach(function () {
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
     const actual = park.dinosaurs
-    assert.deepStrictEqual(actual, 3)
+    assert.deepStrictEqual(actual, [tyrannosaurus,veloceraptor, brachiosaurus])
   })
 
   it('should be able to remove a dinosaur from its collection', function () {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(brachiosaurus)
-    park.removeDinosaur(Brachiosaurus)
+    park.removeDinosaur(brachiosaurus)
     const actual = park.dinosaurs
-    assert.deepStrictEqual(actual, 1)
+    assert.deepStrictEqual(actual, [tyrannosaurus])
   })
 
   it('should be able to find the dinosaur that attracts the most visitors', function() {
@@ -56,22 +56,23 @@ beforeEach(function () {
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
     const actual = park.getMostAttractiveDinosaur()
-    assert.strictEqual(actual, tyrannosaurus)
+    assert.deepStrictEqual(actual,tyrannosaurus)
   });
 
   it('should be able to find all dinosaurs of a particular species', function () {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
-    const actual = park.particularSpecies
-    assert.deepStrictEqual(actual, ("Veloceraptor"))
+    const actual = park.findBySpecies("Veloceraptor")
+    const expected = [veloceraptor]
+    assert.deepStrictEqual(actual,expected)
   })
 
   it('should be able to calculate the total number of visitors per day', function () {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
-    const actual = park.totalVisitors
+    const actual = park.totalVisitorsPerDay()
     assert.strictEqual(actual, 850)
   });
 
@@ -80,7 +81,7 @@ beforeEach(function () {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
-    const actual = park.visitorsPerYear
+    const actual = park.totalVisitorsPerYear()
     assert.strictEqual(actual, 310250)
   });
 
@@ -88,7 +89,7 @@ beforeEach(function () {
     park.addDinosaur(tyrannosaurus)
     park.addDinosaur(veloceraptor)
     park.addDinosaur(brachiosaurus)
-    const actual = park.totalRevenue
+    const actual = park.totalYearlyRevenue()
     assert.strictEqual(actual, 6205000)
   });
 });
